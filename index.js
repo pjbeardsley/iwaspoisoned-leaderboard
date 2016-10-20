@@ -1,6 +1,5 @@
 request = require("request"),
 cheerio = require("cheerio");
-range   = require("range");
 async   = require("async");
 
 var leaderboard = {};

@@ -6,6 +6,7 @@ async   = require("async");
 var leaderboard = {};
 
 var curPage = 1;
+var numPages = 35;
 
 function sendRequest(callback) {
 
@@ -49,13 +50,13 @@ function sendRequest(callback) {
 };
 
 function sendRequestWrapper(n, done) {
-    console.log('Calling sendRequest', n);
+    console.log('Calling sendRequest', n+1);
     sendRequest(function(err) {
         done(err);
     });
 };
 
-async.timesSeries(35, sendRequestWrapper, function () {
+async.timesSeries(numPages, sendRequestWrapper, function () {
     var sortable = [];
     for (var k in leaderboard) {
       sortable.push([k, leaderboard[k]])

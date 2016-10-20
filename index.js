@@ -20,6 +20,10 @@ app.get('/', function(request, response) {
   response.render('pages/index', {sortable: sortable});
 });
 
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
 function sendRequest(n, done) {
     console.log('Calling sendRequest', n+1);
 
@@ -69,9 +73,5 @@ async.timesSeries(numPages, sendRequest, function () {
         return a[1] - b[1]
     });
     console.log(sortable.reverse());
-
-    app.listen(app.get('port'), function() {
-      console.log('Node app is running on port', app.get('port'));
-    });
 
 });

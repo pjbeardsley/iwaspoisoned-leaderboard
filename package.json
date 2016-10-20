@@ -1,0 +1,14 @@
+{
+  "name": "iwaspoisoned-leaderboard",
+  "version": "1.0.0",
+  "description": "iwaspoisoned leaderboard",
+  "main": "index.js",
+  "author": "Peter Beardsley <pjbeardsley@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.1.2",
+    "cheerio": "^0.22.0",
+    "range": "^0.0.3",
+    "request": "^2.75.0"
+  }
+}

@@ -2,12 +2,24 @@
   "name": "iwaspoisoned-leaderboard",
   "version": "1.0.0",
   "description": "iwaspoisoned leaderboard",
-  "main": "index.js",
   "author": "Peter Beardsley <pjbeardsley@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "async": "^2.1.2",
     "cheerio": "^0.22.0",
-    "request": "^2.75.0"
+    "request": "^2.75.0",
+    "ejs": "2.4.1",
+    "express": "4.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pjbeardsley/iwaspoisoned-leaderboard"
   }
 }

@@ -1,11 +1,24 @@
 request = require("request"),
 cheerio = require("cheerio");
 async   = require("async");
+var express = require('express');
+var app = express();
 
 var leaderboard = {};
-
+var sortable = [];
 var curPage = 1;
 var numPages = 3;
+
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname + '/public'));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(request, response) {
+  response.render('pages/index', {sortable: sortable});
+});
 
 function sendRequest(n, done) {
     console.log('Calling sendRequest', n+1);
@@ -49,7 +62,6 @@ function sendRequest(n, done) {
 };
 
 async.timesSeries(numPages, sendRequest, function () {
-    var sortable = [];
     for (var k in leaderboard) {
       sortable.push([k, leaderboard[k]])
     }
@@ -57,4 +69,9 @@ async.timesSeries(numPages, sendRequest, function () {
         return a[1] - b[1]
     });
     console.log(sortable.reverse());
+
+    app.listen(app.get('port'), function() {
+      console.log('Node app is running on port', app.get('port'));
+    });
+
 });

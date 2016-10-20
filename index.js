@@ -7,7 +7,7 @@ var app = express();
 var leaderboard = {};
 var sortable = [];
 var curPage = 1;
-var numPages = 3;
+var numPages = 35;
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));

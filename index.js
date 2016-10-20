@@ -6,9 +6,10 @@ async   = require("async");
 var leaderboard = {};
 
 var curPage = 1;
-var numPages = 35;
+var numPages = 3;
 
-function sendRequest(callback) {
+function sendRequest(n, done) {
+    console.log('Calling sendRequest', n+1);
 
     if (curPage == 1) {
         curURL = 'http://www.iwaspoisoned.com/reports/';
@@ -44,19 +45,11 @@ function sendRequest(callback) {
         console.log("We’ve encountered an error: " + error);
       }
 
-        callback(null);
-    });
-
-};
-
-function sendRequestWrapper(n, done) {
-    console.log('Calling sendRequest', n+1);
-    sendRequest(function(err) {
-        done(err);
+        done(null);
     });
 };
 
-async.timesSeries(numPages, sendRequestWrapper, function () {
+async.timesSeries(numPages, sendRequest, function () {
     var sortable = [];
     for (var k in leaderboard) {
       sortable.push([k, leaderboard[k]])
